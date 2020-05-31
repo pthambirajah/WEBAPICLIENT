@@ -17,8 +17,7 @@ namespace webapiclient2.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IOptions<MySettingsModel> appSettings;
-
-        string passengerLastID = "";
+        private string passengerLastID = "";
 
         public HomeController(ILogger<HomeController> logger, IOptions<MySettingsModel> app)
         {
@@ -27,9 +26,8 @@ namespace webapiclient2.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> IndexAsync(string id)
+        public async Task<IActionResult> SelectFlight(string id)
         {
-
             passengerLastID = id;
             var data = await ApiClientFactory.Instance.GetTodoItems();
             return View(data);
@@ -44,6 +42,7 @@ namespace webapiclient2.Controllers
         [HttpGet]
         public async void Buy(int FlightNo, double SalePrice)
         {
+            passengerLastID = await ApiClientFactory.Instance.GetPassengerID();
             int PassengerID = int.Parse(passengerLastID);
                 //int.Parse(HttpContext.Session.GetString("PassengerID"));
             Booking newBooking = new Booking { FlightNo = FlightNo, PersonID = PassengerID, SalePrice = SalePrice};

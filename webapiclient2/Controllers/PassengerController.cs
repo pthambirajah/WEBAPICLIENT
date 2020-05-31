@@ -11,7 +11,7 @@ namespace webapiclient2.Controllers
 {
     public class PassengerController : Controller
     {
-        string passengerLastID = "";
+        private string passengerLastID = "";
 
         // GET: Passenger
         public ActionResult Index()
@@ -45,7 +45,9 @@ namespace webapiclient2.Controllers
 
                 CreatePassenger(p);
 
-                return RedirectToAction("Index", "Home", new { id = passengerLastID });
+                //GetPassengerID();
+
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
@@ -57,13 +59,13 @@ namespace webapiclient2.Controllers
         {
             
             await ApiClientFactory.Instance.RegisterPassenger(p);
-            GetPassengerID();
+            
         }
 
         public async void GetPassengerID()
         {
-
-            passengerLastID = await ApiClientFactory.Instance.GetPassengerID();
+           
+                        
             //HttpContext.Session.SetString("PassengerID", PassengerID);
         }
 
