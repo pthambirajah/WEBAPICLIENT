@@ -24,7 +24,7 @@ namespace webapiclient2
                 var priceRequestUrl = CreateRequestUri(string.Format(System.Globalization.CultureInfo.InvariantCulture,
                 "Flights/Price/"+FlightNo+"/"));
                 double SalePrice = await GetAsync<double>(priceRequestUrl);
-
+                 
                 flight.SalePrice = SalePrice;
 
             }

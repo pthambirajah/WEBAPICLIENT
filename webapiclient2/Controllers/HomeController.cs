@@ -26,13 +26,7 @@ namespace webapiclient2.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> SelectFlight(string id)
-        {
-            passengerLastID = id;
-            var data = await ApiClientFactory.Instance.GetTodoItems();
-            return View(data);
-        }
-
+       
         public async Task<IActionResult> IndexAsync()
         {
             var data = await ApiClientFactory.Instance.GetTodoItems();
